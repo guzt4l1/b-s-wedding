@@ -335,29 +335,29 @@
     document.querySelector('#nama').value = nama;
   </script>
 
-<script>
-  function getQueryParam(param) {
-    const urlParams = new URLSearchParams(window.location.search);
-    return urlParams.get(param);
+  <script>
+  function tambahNamaTamu() {
+    const nama = decodeURIComponent(window.location.hash.slice(1));
+    const container = document.querySelector("#hero h4").parentElement;
+
+    // Hapus elemen nama tamu sebelumnya jika sudah ada
+    const existing = document.getElementById("nama-tamu");
+    if (existing) existing.remove();
+
+    if (nama) {
+      const p = document.createElement("p");
+      p.id = "nama-tamu";
+      p.textContent = nama;
+      p.style.marginTop = "10px";
+      p.style.fontWeight = "bold";
+      p.style.fontSize = "18px";
+      container.appendChild(p);
+    }
   }
 
-  window.addEventListener("DOMContentLoaded", () => {
-    const nama = getQueryParam("to");
-    if (nama) {
-      const h4 = document.querySelector("#hero h4");
-      if (h4) {
-        const spanNama = document.createElement("span");
-        spanNama.textContent = nama;
-        spanNama.style.color = "#FFD700"; // Warna emas, bisa kamu ganti
-        spanNama.style.fontWeight = "bold";
-        spanNama.style.marginLeft = "4px"; // Jarak dari koma
-
-        h4.appendChild(spanNama);
-      }
-    }
-  });
+  window.addEventListener("load", tambahNamaTamu);
+  window.addEventListener("hashchange", tambahNamaTamu);
 </script>
-
 
 </body>
 
