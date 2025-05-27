@@ -335,6 +335,12 @@
     document.querySelector('#nama').value = nama;
   </script>
 
+<script>
+  function getQueryParam(param) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(param);
+  }
+
   window.addEventListener("DOMContentLoaded", () => {
     const nama = getQueryParam("to");
     if (nama) {
